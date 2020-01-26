@@ -43,6 +43,13 @@ class User:
 
         return False
 
+    @classmethod
+    def display_users(cls):
+        '''
+        method that returns the user list
+        '''
+        return cls.user_list
+
     def save_user(self):
         """
         save_user method saves user objects into user_list
