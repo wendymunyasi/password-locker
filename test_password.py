@@ -14,7 +14,7 @@ class TestUser(unittest.TestCase):
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
 
-    def test_instance(self):
+    def test_init(self):
         '''
         To test if the object is initialized properly
         '''
