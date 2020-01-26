@@ -12,9 +12,9 @@ class User:
         self.last_name = last_name
         self.phone_number = number
         self.email = email
-        
+
     @classmethod
-    def find_by_number(cls,number):
+    def find_by_number(cls, number):
         '''
         Method that takes in a number and returns a user that matches that number.
 
@@ -28,6 +28,20 @@ class User:
             if user.phone_number == number:
                 return user
 
+    @classmethod
+    def user_exist(cls, number):
+        '''
+        Method that checks if a user exists from the user list.
+        Args:
+            number: Phone number to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        for user in cls.user_list:
+            if user.phone_number == number:
+                return True
+
+        return False
 
     def save_user(self):
         """
