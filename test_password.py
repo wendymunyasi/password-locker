@@ -3,9 +3,9 @@ from password import User
 
 
 class TestUser(unittest.TestCase):
-    """
+    '''
     Test class that defines test cases for the contact class behaviours.
-    """
+    '''
 
     def setUp(self):
         '''
@@ -13,6 +13,12 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
+
+    def tearDown(self):
+        '''
+        tearDown method that does clean up aftereach test case has run.
+        '''
+        User.user_list = []
 
     def test_init(self):
         '''
@@ -31,6 +37,16 @@ class TestUser(unittest.TestCase):
         '''
         self.new_user.save_user()  # saving the new contact
         self.assertEqual(len(User.user_list), 1)
+
+    def test_save_multiple_user(self):
+        '''
+        test_save_multiple_user to check if we can save multiple user objects to our user_list.
+        '''
+        self.new_user.save_user()
+        test_user = User("Test", "User", "0712345678",
+                         "test@user.com")  # new user
+        test_user.save_user()
+        self.assertEqual(len(User.user_list), 2)
 
 
 if __name__ == '__main__':
