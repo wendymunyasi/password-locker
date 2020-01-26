@@ -12,6 +12,22 @@ class User:
         self.last_name = last_name
         self.phone_number = number
         self.email = email
+        
+    @classmethod
+    def find_by_number(cls,number):
+        '''
+        Method that takes in a number and returns a user that matches that number.
+
+        Args:
+            number: Phone number to search for
+        Returns :
+            User that matches the number.
+        '''
+
+        for user in cls.user_list:
+            if user.phone_number == number:
+                return user
+
 
     def save_user(self):
         """
