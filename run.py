@@ -58,7 +58,7 @@ def check_existing_credentials(number):
 
 
 def check_existing_credential_username_and_app_name(username, app_name):
-    return Credentials.find_by_username_and_app_name()
+    return Credentials.find_by_username_and_app_name(username, app_name)
 
 
 def display_credentials():
@@ -194,7 +194,7 @@ def main():
 
                     print(
                         f"The copied user is: {searched_user.phone_number} ")
-                    # searched_user.phone_number, pyperclip.paste()
+                    searched_user.phone_number, pyperclip.paste()
 
                 else:
                     print('\n')
@@ -206,140 +206,157 @@ def main():
             '''
             First check if the user exists
             '''
-            print("Enter your phone number below")
+            print("Enter your phone number below to confirm if you exist. If you do, you will be redirected to a place to create your account.")
 
             search_number = input()
 
             if check_existing_users(search_number):
-               search_user = find_user(search_number)
-               print(f"Phone number ....{search_user.phone_number}")
-               print(f"Email address...{search_user.email}")
 
-               print("Now let's create your credentials account")
-               while True:
-                   print("Use these short codes : cac - create a new credential account, dac - display a credential, fac - find a credential, ex - exit, dac - delete a credential, ext - exit credential")
+                search_user = find_user(search_number)
+                print(f"Phone number ....{search_user.phone_number}")
+                print(f"Email address...{search_user.email}")
 
-                   short_code = input().lower()
+                print('\n')
+                print("Now let's create your credentials account")
+                while True:
+                    print("Use these short codes : cac - create a new credential account, dac - display a credential, fac - find a credential, ex - exit, dlt - delete a credential, ext - exit credential")
 
-                   if short_code == 'cac':
-                       print("New Credential")
-                       print("-"*10)
+                    short_code = input().lower()
 
-                       print("First name...")
-                       firstname = input().capitalize()
+                    if short_code == 'cac':
+                        print("New Credential")
+                        print("-"*10)
 
-                       print("Last name")
-                       lastname = input().capitalize()
+                        print("First name...")
+                        firstname = input().capitalize()
 
-                       print("App name")
-                       app_name = input().capitalize()
+                        print("Last name")
+                        lastname = input().capitalize()
 
-                       print("Email")
-                       emaill = input().lower
+                        print("App name")
+                        app_name = input().capitalize()
 
-                       print("Phone Number")
-                       phone_no = input()
+                        print("Email")
+                        emaill = input()
 
-                       print("Password")
-                       password = input()
-                       print('\n')
-                       
-                       print("Username")
-                       username = input()
+                        print("Phone Number")
+                        phone_no = input()
 
-                       save_credentials(create_credential(
-                           firstname, lastname, app_name, emaill, phone_no, password, username))
+                        print("Password")
+                        password = input()
 
-                       print('\n')
-                       print(
-                           f"New Credential of the user {firstname} {lastname} created")
-                       print('\n')
-                    
-                   elif short_code == 'dac':
-                       
+                        print("Username")
+                        username = input()
+                        print('\n')
+
+                        save_credentials(create_credential(
+                            firstname, lastname, app_name, emaill, phone_no, password, username))
+
+                        print('\n')
+                        print(
+                            f"New Credential of the user {firstname} {lastname} created")
+                        print('\n')
+
+                    elif short_code == 'dac':
+
                         if display_credentials():
                             print("Here is a list of all your credentials")
                             print('\n')
-                            
+
                             for credential in display_credentials():
-                                print(f"Name: {credentials.first_name} {Credentials.last_name}")
-                                print(f"App Name: {credentials.app_name}")
-                                print(f"Email: {credentials.email}")
-                                print(f"Phone No: {credentials.phone_number}")
-                                print(f"Password: {credentials.password}")
+                                print(
+                                    f"Name: {credential.first_name} {credential.last_name}")
+                                print(f"App Name: {credential.app_name}")
+                                print(f"Email: {credential.email}")
+                                print(f"Phone No: {credential.phone_number}")
+                                print(f"Password: {credential.password}")
                                 print('\n')
                         else:
                             print('\n')
                             print("You don't seem to have any credentials saved yet")
                             print('\n')
-                            
-                   elif short_code == 'fac':
-                        
-                        print("Now, let's help you view your various credentials of various accounts") 
-                        
-                        print('\n')  
-                        
+
+                    elif short_code == 'fac':
+
+                        print(
+                            "Now, let's help you view your various credentials of various accounts")
+
+                        print('\n')
+
                         print("Enter your phone number below")
-                        
+
                         search_number = input()
-                        
+
                         if check_existing_credentials(search_number):
-                            search_credential = find_credential(search_number)  
-                            print(f"{search_credential.first_name} {search_credential.last_name}")
+                            search_credential = find_credential(search_number)
+                            print(
+                                f"{search_credential.first_name} {search_credential.last_name}")
                             print('-' * 20)
-                            
-                            print(f"Phone number: {search_credential.phone_number}")
+
+                            print(
+                                f"Phone number: {search_credential.phone_number}")
                             print(f"App_name: {search_credential.app_name}")
                             print(f"Password: {search_credential.password}")
                         else:
-                            print("The credentials belonging to {search_number} does not exist.")
-                    
-                   elif short_code == 'dac':
-                        
+                            print(
+                                "The credentials belonging to {search_number} does not exist.")
+                            print('\n')
+
+                    elif short_code == 'dlt':
+
                         print("Are you sure you want to delete contact? Input y or n")
-                        
-                        answer =input().lower()
-                        
+
+                        answer = input().lower()
+
                         if answer == 'y':
-                            print("Enter the username and the app name of the credential you want to delete")
-                            
+                            print(
+                                "Enter the username and the app name of the credential you want to delete")
+
                             search_username = input()
                             search_app_name = input()
-                            
+
                             if check_existing_credential_username_and_app_name(search_username, search_app_name):
-                                
-                                (search_credential == find_by_username_and_app_name(search_username, search_app_name):
-                                    
-                                    print(f"{search_credential.first_name} {search_credential.last_name}") 
-                                    print('-' * 20) 
-                                                            
-                                    print(f"Username: {search_credential.username}")
-                                    print(f"App Name: {search_credential.app_name}")
-                                    print(f"Phone No: {search_credential.phone_number}")
-                                    
+
+                                search_credential = Credentials.find_by_username_and_app_name(
+                                    search_username, search_app_name)
+
+                                print(
+                                    f"{search_credential.first_name} {search_credential.last_name}")
+                                print('-' * 20)
+
+                                print(
+                                    f"Username: {search_credential.username}")
+                                print(
+                                    f"App Name: {search_credential.app_name}")
+                                print(
+                                    f"Phone No: {search_credential.phone_number}")
+
+                                print('\n')
+                                print(
+                                    "Is that the credential you want to delete? Type y or n")
+
+                                answer_three = input().lower
+
+                                if answer_three == 'y':
+                                    search_credential.delete_credential()
+                                else:
                                     print('\n')
-                                    print("Is that the credential you want to delete? Type y or n")
-                                    
-                                    answer_three = input().lower
-                                    
-                                    if answer_three == 'y':
-                                        search_credential.delete_credential()
-                                    else:
-                                        print('\n')
                             else:
-                                print("The credential does not exist")    
+                                print("The credential does not exist")
                         else:
-                            print('\n')            
-                    
+                            print('\n')
+
                     elif short_code == 'ext':
-                        print("Thank you for using credentials app, Bye.....") 
+                        print("Thank you for using credentials app, Bye.....")
                         break
-                    
-                    else:print("I really didn't get that. Please use short codes")                              
-                                
-            else:
-               print("The user does not exist therefore you cannot make a credentials account with us")
-           
+
+                    else:
+                        print("I really didn't get that. Please use short codes")
+
+            # elif:
+
+            #     print("The user does not exist therefore you cannot make a credentials account with us")
+
         elif short_code == "ex":
             print("Bye .......")
             break

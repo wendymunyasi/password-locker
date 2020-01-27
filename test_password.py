@@ -189,20 +189,20 @@ class TestCredentials(unittest.TestCase):
 
         found_credential = Credentials.find_by_number("0707240068")
 
-        self.assertEqual(found_credential.phone_number, test_credential.phone_number)
-    
+        self.assertEqual(found_credential.phone_number,
+                         test_credential.phone_number)
+
     def test_find_credential_by_app_name_and_username(self):
         self.new_credential.save_credentials()
         test_credential = Credentials(
             "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
         test_credential.save_credentials()
-        
-        find_credential = Credentials.find_by_username_and_app_name("Twitter","weezycray")
-        
+
+        find_credential = Credentials.find_by_username_and_app_name(
+            "Twitter", "weezycray")
+
         self.assertEqual(find_credential.username, test_credential.username)
         self.assertEqual(find_credential.app_name, test_credential.app_name)
-        
-        
 
     def test_credential_exists(self):
         self.new_credential.save_credentials()
@@ -213,9 +213,10 @@ class TestCredentials(unittest.TestCase):
         credential_exists = Credentials.credential_exists("0707240068")
 
         self.assertTrue(credential_exists)
-    
+
     def test_display_all_credentials(self):
-        self.assertEqual(Credentials.display_all_credentials(), Credentials.credentials_list)
+        self.assertEqual(Credentials.display_all_credentials(),
+                         Credentials.credentials_list)
 
 
 if __name__ == '__main__':

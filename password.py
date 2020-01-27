@@ -24,7 +24,6 @@ class User:
     def find_by_number(cls, number):
         '''
         Method that takes in a number and returns a user that matches that number.
-
         Args:
             number: Phone number to search for
         Returns :
@@ -98,7 +97,7 @@ class Credentials:
         return current_user
 
     def __init__(self, first_name, last_name, app_name, email, phone_number, password, username):
-    
+
         self.first_name = first_name
         self.last_name = last_name
         self.app_name = app_name
@@ -106,39 +105,36 @@ class Credentials:
         self.phone_number = phone_number
         self.password = password
         self.username = username
-    
+
     @classmethod
     def find_by_number(cls, number):
         for credential in cls.credentials_list:
             if credential.phone_number == number:
                 return credential
-    
+
     @classmethod
     def find_by_username_and_app_name(cls, appname, username):
         for credential in cls.credentials_list:
             if (credential.app_name == appname and credential.username == username):
                 return credential
-    
-    
+
     @classmethod
     def credential_exists(cls, number):
         for credential in cls.credentials_list:
             if credential.phone_number == number:
                 return True
         return False
-    
+
     @classmethod
-    def display_credentials(cls): #
+    def display_credentials(cls):
         return cls.credentials_list
-    
+
     @classmethod
     def display_all_credentials(cls):
         return cls.credentials_list
-    
+
     def save_credentials(self):
         Credentials.credentials_list.append(self)
-        
+
     def delete_credential(self):
         Credentials.credentials_list.remove(self)
-
-    
