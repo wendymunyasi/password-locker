@@ -119,6 +119,13 @@ class TestCredentials(unittest.TestCase):
         '''
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
+        self.new_credential = Credentials("Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")
+        
+    def tearDown(self):
+        '''
+        tearDown method that does clean up aftereach test case has run.
+        '''
+        Credentials.credentials_list = []
         
     def test_user_exists(self):
         '''
@@ -128,12 +135,24 @@ class TestCredentials(unittest.TestCase):
         test_user = User("Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com")
         test_user.save_user()
         
+        current_user = ""
+        
         for user in User.user_list:
-            if user.first_name == test_user.first_name:
+            if (user.first_name == test_user.first_name and user.phone_number == test_user.phone_number):
                 current_user = user.first_name
-        return current_user
+                return current_user
     
-        self.assertEqual(current_user,Credentials.user_exist(test_user.first_name))
+        self.assertEqual(current_user,Credentials.user_exist(test_user.first_name, test_user.phone_number))
+
+def test_init(self):
+    
+    self.assertEqual(self.new_credential.first_name, "James")
+    self.assertEqual(self.new_credential.last_name, "Muriuki")
+    self.assertEqual(self.new_credential.app_name, "Twitter")
+    self.assertEqual(self.new_credential.email, "james@ms.com")
+    self.assertEqual(self.new_credential.phone_number, "0707240068")
+    self.assertEqual(self.new_credential.password, "nBD48gd6dD")
+
         
 
 if __name__ == '__main__':
