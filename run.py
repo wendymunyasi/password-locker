@@ -32,9 +32,9 @@ def display_users():
     return User.display_users()
 
 
-def create_credential(fname, lname, appname, email, phone, password):
+def create_credential(firstname, lastname, appname, emaill, phone_no, password):
 
-    new_credential = Credentials(fname, lname, appname, email, phone, password)
+    new_credential = Credentials(firstname, lastname, appname, emaill, phone_no, password)
     return new_credential
 
 
@@ -205,10 +205,46 @@ def main():
            
             search_number = input()
            
-            if check_existing_credentials(search_number):
+            if check_existing_users(search_number):
                search_user = find_user(search_number)
                print(f"Phone number ....{search_user.phone_number}")
                print(f"Email address...{search_user.email}")
+               
+               print("Now let's create your credentials account")
+               while True:
+                   print("Use these short codes : cac - create a new credential account, dac - display a credential, fac - find a credential, ex - exit, dac - delete a credential")
+                   
+                   short_code = input().lower()
+                   
+                   if short_code == 'cac':
+                       print("New Credential")
+                       print("-"*10)
+                       
+                       print("First name...")
+                       firstname = input().capitalize()
+                       
+                       print("Last name")
+                       lastname = input().capitalize()
+                       
+                       print("App name")
+                       app_name = input().capitalize()
+                       
+                       print("Email")
+                       emaill = input().lower
+                       
+                       print("Phone Number")
+                       phone_no = input()
+                       
+                       print("Password")
+                       password = input()
+                       
+                       save_credentials(create_credential(firstname, lastname, app_name, emaill, phone_no, password))
+                       
+                       print('\n')
+                       print(f"New Credential of the user {firstname} {lastname} created")
+                       print('\n')
+                       
+                                
             else:
                print("The user does not exist therefore you cannot make a credentials account with us")
            
