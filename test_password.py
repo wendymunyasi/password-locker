@@ -1,6 +1,6 @@
 import unittest
 import pyperclip
-from password import User
+from password import User, Credentials
 
 
 class TestUser(unittest.TestCase):
@@ -106,6 +106,21 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(self.new_user.email, pyperclip.paste())
 
+
+class TestCredentials(unittest.TestCase):
+
+    '''
+    Test class that defines test cases for the contact class behaviours.
+    '''
+
+    def setUp(self):
+        '''
+        Set up method to run before each test cases.
+        '''
+        self.new_user = User(
+            "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
+        
+    
 
 if __name__ == '__main__':
     unittest.main()
