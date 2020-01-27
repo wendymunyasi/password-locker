@@ -106,6 +106,12 @@ class Credentials:
         self.phone_number = phone_number
         self.password = password
     
+    @classmethod
+    def find_by_number(cls, number):
+        for credential in cls.credentials_list:
+            if credential.phone_number == number:
+                return credential
+    
     def save_credentials(self):
         Credentials.credentials_list.append(self)
         
