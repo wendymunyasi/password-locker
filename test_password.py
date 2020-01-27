@@ -165,9 +165,20 @@ class TestCredentials(unittest.TestCase):
 
     def test_save_multiple_credentials(self):
         self.new_credential.save_credentials()
-        test_credential = Credentials("Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")# new credential
+        test_credential = Credentials(
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
         test_credential.save_credentials()
         self.assertEqual(len(Credentials.credentials_list), 2)
+
+    def test_delete_credential(self):
+
+        self.new_credential.save_credentials()
+        test_credential = Credentials(
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
+        test_credential.save_credentials()
+
+        self.new_credential.delete_credential()  # Deleting a contact object
+        self.assertEqual(len(Credentials.credentials_list), 1)
 
 
 if __name__ == '__main__':
