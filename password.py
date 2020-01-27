@@ -112,6 +112,13 @@ class Credentials:
             if credential.phone_number == number:
                 return credential
     
+    @classmethod
+    def credential_exists(cls, number):
+        for credential in cls.credentials_list:
+            if credential.phone_number == number:
+                return True
+        return False
+    
     def save_credentials(self):
         Credentials.credentials_list.append(self)
         
