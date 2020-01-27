@@ -110,7 +110,7 @@ class TestUser(unittest.TestCase):
 class TestCredentials(unittest.TestCase):
 
     '''
-    Test class that defines test cases for the contact class behaviours.
+    Test class that defines test cases for the credentials class behaviours.
     '''
 
     def setUp(self):
@@ -145,6 +145,10 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(current_user,Credentials.user_exist(test_user.first_name, test_user.phone_number))
 
 def test_init(self):
+    
+    '''
+        To test if the object is initialized properly
+    '''
     
     self.assertEqual(self.new_credential.first_name, "James")
     self.assertEqual(self.new_credential.last_name, "Muriuki")
