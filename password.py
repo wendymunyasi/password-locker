@@ -99,21 +99,21 @@ class Credentials:
         return current_user
     
     
-    @property
-    def username(self): 
-        return self.username 
+    # @property
+    # def username(self): 
+    #     return self.username 
    
-    @username.setter 
-    def username(self, username): 
-        while (username == ""): 
-            username = input("Enter a User name:") 
-        self.sername = username 
+    # @username.setter 
+    # def username(self, username): 
+    #     while (username == ""): 
+    #         username = input("Enter a User name:") 
+    #     self.sername = username 
     
-    @password.setter 
-    def password(self, password): 
-        stringLength = 8
-        randomString = uuid.uuid4().hex # get a random string in a UUID fromat
-        randomString  = randomString[0:stringLength] # Trim to your size.
-        print(randomString)
-        return randomString
+    # @password.setter 
+    # def password(self, password): 
+    #     stringLength = 8
+    #     randomString = uuid.uuid4().hex # get a random string in a UUID fromat
+    #     randomString  = randomString[0:stringLength] # Trim to your size.
+    #     print(randomString)
+    #     return randomString
     
