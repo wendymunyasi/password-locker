@@ -119,37 +119,39 @@ class TestCredentials(unittest.TestCase):
         '''
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
-        self.new_credential = Credentials("Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")
-        
+        self.new_credential = Credentials(
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")
+
     def tearDown(self):
         '''
         tearDown method that does clean up aftereach test case has run.
         '''
         Credentials.credentials_list = []
-        
+
     def test_user_exists(self):
         '''
         Test to check if a specific user exists.
         '''
         self.new_user.save_user()
-        test_user = User("Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com")
+        test_user = User("Wendy", "Munyasi", "0707240068",
+                         "wendymunyasi@gmail.com")
         test_user.save_user()
-        
+
         current_user = ""
-        
+
         for user in User.user_list:
             if (user.first_name == test_user.first_name and user.phone_number == test_user.phone_number):
                 current_user = user.first_name
                 return current_user
-    
-        self.assertEqual(current_user,Credentials.user_exist(test_user.first_name, test_user.phone_number))
+
+        self.assertEqual(current_user, Credentials.user_exist(
+            test_user.first_name, test_user.phone_number))
 
     def test_init(self):
-    
         '''
         To test if the object is initialized properly
         '''
-    
+
         self.assertEqual(self.new_credential.first_name, "Wendy")
         self.assertEqual(self.new_credential.last_name, "Munyasi")
         self.assertEqual(self.new_credential.app_name, "Twitter")
@@ -161,7 +163,12 @@ class TestCredentials(unittest.TestCase):
         self.new_credential.save_credentials()
         self.assertEqual(len(Credentials.credentials_list), 1)
 
-        
+    def test_save_multiple_credentials(self):
+        self.new_credential.save_credentials()
+        test_credential = Credentials("Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")# new credential
+        test_credential.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 2)
+
 
 if __name__ == '__main__':
     unittest.main()
