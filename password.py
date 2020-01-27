@@ -105,3 +105,7 @@ class Credentials:
         self.email = email
         self.phone_number = phone_number
         self.password = password
+    
+    def save_credentials(self):
+        Credentials.credentials_list.append(self)
+    
