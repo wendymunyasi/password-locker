@@ -97,20 +97,28 @@ class Credentials:
                 current_user = user.first_name
         return current_user
 
-    def __init__(self, first_name, last_name, app_name, email, phone_number, password):
-
+    def __init__(self, first_name, last_name, app_name, email, phone_number, password, username):
+    
         self.first_name = first_name
         self.last_name = last_name
         self.app_name = app_name
         self.email = email
         self.phone_number = phone_number
         self.password = password
+        self.username = username
     
     @classmethod
     def find_by_number(cls, number):
         for credential in cls.credentials_list:
             if credential.phone_number == number:
                 return credential
+    
+    @classmethod
+    def find_by_username_and_app_name(cls, appname, username):
+        for credential in cls.credentials_list:
+            if (credential.app_name == appname and credential.username == username):
+                return credential
+    
     
     @classmethod
     def credential_exists(cls, number):
