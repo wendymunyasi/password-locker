@@ -120,7 +120,21 @@ class TestCredentials(unittest.TestCase):
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
         
+    def test_user_exists(self):
+        '''
+        Test to check if a specific user exists.
+        '''
+        self.new_user.save_user()
+        test_user = User("Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com")
+        test_user.save_user()
+        
+        for user in User.user_list:
+            if user.first_name == test_user.first_name:
+                current_user = user.first_name
+        return current_user
     
+        self.assertEqual(current_user,Credentials.user_exist(test_user.first_name))
+        
 
 if __name__ == '__main__':
     unittest.main()
