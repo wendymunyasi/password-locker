@@ -120,7 +120,7 @@ class TestCredentials(unittest.TestCase):
         self.new_user = User(
             "Wendy", "Munyasi", "0707240068", "wendymunyasi@gmail.com.com")  # create contact object
         self.new_credential = Credentials(
-            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")
 
     def tearDown(self):
         '''
@@ -158,6 +158,7 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.email, "wendymunyasi@gmail.com")
         self.assertEqual(self.new_credential.phone_number, "0707240068")
         self.assertEqual(self.new_credential.password, "nBD48gd6dD")
+        self.assertEqual(self.new_credential.username, "weezycray")
 
     def test_save_credential(self):
         self.new_credential.save_credentials()
@@ -166,7 +167,7 @@ class TestCredentials(unittest.TestCase):
     def test_save_multiple_credentials(self):
         self.new_credential.save_credentials()
         test_credential = Credentials(
-            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycrazy")  # new credential
         test_credential.save_credentials()
         self.assertEqual(len(Credentials.credentials_list), 2)
 
@@ -174,7 +175,7 @@ class TestCredentials(unittest.TestCase):
 
         self.new_credential.save_credentials()
         test_credential = Credentials(
-            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
         test_credential.save_credentials()
 
         self.new_credential.delete_credential()  # Deleting a contact object
@@ -183,17 +184,30 @@ class TestCredentials(unittest.TestCase):
     def test_find_credential_by_number(self):
         self.new_credential.save_credentials()
         test_credential = Credentials(
-            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
         test_credential.save_credentials()
 
         found_credential = Credentials.find_by_number("0707240068")
 
-        self.assertEqual(found_credential.email, test_credential.email)
+        self.assertEqual(found_credential.phone_number, test_credential.phone_number)
+    
+    def test_find_credential_by_app_name_and_username(self):
+        self.new_credential.save_credentials()
+        test_credential = Credentials(
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
+        test_credential.save_credentials()
+        
+        find_credential = Credentials.find_by_username_and_app_name("Twitter","weezycray")
+        
+        self.assertEqual(find_credential.username, test_credential.username)
+        self.assertEqual(find_credential.app_name, test_credential.app_name)
+        
+        
 
     def test_credential_exists(self):
         self.new_credential.save_credentials()
         test_credential = Credentials(
-            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD")  # new credential
+            "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
         test_credential.save_credentials()
 
         credential_exists = Credentials.credential_exists("0707240068")
