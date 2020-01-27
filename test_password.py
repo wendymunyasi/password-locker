@@ -199,6 +199,9 @@ class TestCredentials(unittest.TestCase):
         credential_exists = Credentials.credential_exists("0707240068")
 
         self.assertTrue(credential_exists)
+    
+    def test_display_all_credentials(self):
+        self.assertEqual(Credentials.display_all_credentials(), Credentials.credentials_list)
 
 
 if __name__ == '__main__':

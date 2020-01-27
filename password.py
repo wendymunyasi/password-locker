@@ -119,6 +119,10 @@ class Credentials:
                 return True
         return False
     
+    @classmethod
+    def display_all_credentials(cls):
+        return cls.credentials_list
+    
     def save_credentials(self):
         Credentials.credentials_list.append(self)
         
