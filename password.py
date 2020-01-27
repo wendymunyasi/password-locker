@@ -1,4 +1,8 @@
 import pyperclip
+import uuid
+
+# Global Variables
+global user_list
 
 class User:
     """
@@ -69,3 +73,47 @@ class User:
         '''
 
         User.user_list.remove(self)
+        
+        
+class Credentials:
+    """
+    Class that generates new instances of the credentials
+    """
+    credentials_list = []  # Empty user list
+    
+    @classmethod
+    
+    def user_exist(cls, first_name):
+        
+        '''
+        Method that checks if a user exists from the user list.
+        Args:
+           first_name: Use this to search if it exists
+        Returns :
+            Boolean: True or false depending if the user exists
+        '''
+        current_user = ""
+        for user in User.user_list:
+            if user.first_name == first_name:
+                current_user = user.first_name
+        return current_user
+    
+    
+    @property
+    def username(self): 
+        return self.username 
+   
+    @username.setter 
+    def username(self, username): 
+        while (username == ""): 
+            username = input("Enter a User name:") 
+        self.sername = username 
+    
+    @password.setter 
+    def password(self, password): 
+        stringLength = 8
+        randomString = uuid.uuid4().hex # get a random string in a UUID fromat
+        randomString  = randomString[0:stringLength] # Trim to your size.
+        print(randomString)
+        return randomString
+    
