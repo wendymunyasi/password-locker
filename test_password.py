@@ -144,18 +144,22 @@ class TestCredentials(unittest.TestCase):
     
         self.assertEqual(current_user,Credentials.user_exist(test_user.first_name, test_user.phone_number))
 
-def test_init(self):
+    def test_init(self):
     
-    '''
+        '''
         To test if the object is initialized properly
-    '''
+        '''
     
-    self.assertEqual(self.new_credential.first_name, "James")
-    self.assertEqual(self.new_credential.last_name, "Muriuki")
-    self.assertEqual(self.new_credential.app_name, "Twitter")
-    self.assertEqual(self.new_credential.email, "james@ms.com")
-    self.assertEqual(self.new_credential.phone_number, "0707240068")
-    self.assertEqual(self.new_credential.password, "nBD48gd6dD")
+        self.assertEqual(self.new_credential.first_name, "Wendy")
+        self.assertEqual(self.new_credential.last_name, "Munyasi")
+        self.assertEqual(self.new_credential.app_name, "Twitter")
+        self.assertEqual(self.new_credential.email, "wendymunyasi@gmail.com")
+        self.assertEqual(self.new_credential.phone_number, "0707240068")
+        self.assertEqual(self.new_credential.password, "nBD48gd6dD")
+
+    def test_save_credential(self):
+        self.new_credential.save_credentials()
+        self.assertEqual(len(Credentials.credentials_list), 1)
 
         
 
