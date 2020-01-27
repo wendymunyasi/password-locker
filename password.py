@@ -83,7 +83,7 @@ class Credentials:
     
     @classmethod
     
-    def user_exist(cls, first_name):
+    def user_exist(cls, first_name, number):
         
         '''
         Method that checks if a user exists from the user list.
@@ -94,7 +94,7 @@ class Credentials:
         '''
         current_user = ""
         for user in User.user_list:
-            if user.first_name == first_name:
+            if (user.first_name == first_name and user.phone_number == number):
                 current_user = user.first_name
         return current_user
     
