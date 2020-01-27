@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.6
 
-from password import User
+from password import User, Credentials
 import pyperclip
 
 
@@ -32,6 +32,34 @@ def display_users():
     return User.display_users()
 
 
+def create_credential(fname, lname, appname, email, phone, password):
+
+    new_credential = Credentials(fname, lname, appname, email, phone, password)
+    return new_credential
+
+
+def save_credentials(credential):
+
+    credential.save_credentials()
+
+
+def del_credential(credential):
+
+    credential.delete_credential()
+
+
+def find_credential(number):
+    return Credentials.find_by_number(number)
+
+
+def check_existing_credentials(number):
+    return Credentials.credential_exists(number)
+
+
+def display_credentials():
+    return Credentials.display_credentials()
+
+
 def main():
 
     print("Hello Welcome to your user list. What is your name?")
@@ -42,7 +70,7 @@ def main():
     print('\n')
 
     while True:
-        print("Use these three short codes : cc - create a new user, dc - display user. fc - find user, ex - exit, del - delete user, co - copy user ")
+        print("Use these three short codes : cc - create a new user, dc - display user. fc - find user, ex - exit, del - delete user, co - copy user, cr - create a credential ")
 
         short_code = input().lower()
 
@@ -97,10 +125,6 @@ def main():
                 print(f"Email address.......{search_user.email}")
             else:
                 print("That user does not exist")
-
-        elif short_code == "ex":
-            print("Bye .......")
-            break
 
         elif short_code == "del":
             print("Are you sure you want to delete user? Input y or n")
@@ -173,6 +197,21 @@ def main():
             else:
                 print("That user does not exist")
 
+        elif short_code == "cr":
+            '''
+            First check if the user exists
+            '''
+            print("Enter your phone number below")
+           
+            search_number = input()
+           
+            if check_existing_credentials(search_number):
+               search_user = find_user(search_number)
+               print(f"Phone number ....{search_user.phone_number}")
+               print(f"Email address...{search_user.email}")
+            else:
+               print("The user does not exist therefore you cannot make a credentials account with us")
+           
         elif short_code == "ex":
             print("Bye .......")
             break
