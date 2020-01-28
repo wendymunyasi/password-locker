@@ -5,34 +5,55 @@ import pyperclip
 
 
 def create_user(fname, lname, phone, email):
+    '''
+    Function to create a new user and returns the user createdx
+    '''
 
     new_user = User(fname, lname, phone, email)
     return new_user
 
 
 def save_users(user):
+    '''
+    Function to save a user
+    '''
 
     user.save_user()
 
 
 def del_user(user):
+    '''
+    Function to delete a user
+    '''
 
     user.delete_user()
 
 
 def find_user(number):
+    '''
+    Function to find a user by number and return the user
+    '''
     return User.find_by_number(number)
 
 
 def check_existing_users(number):
+    '''
+    Function to check existing users by number and return a boolean
+    '''
     return User.user_exist(number)
 
 
 def display_users():
+    '''
+    Function to display users
+    '''
     return User.display_users()
 
 
 def create_credential(firstname, lastname, appname, emaill, phone_no, password, username):
+    '''
+    Function to create a new credential and return the credential created
+    '''
 
     new_credential = Credentials(
         firstname, lastname, appname, emaill, phone_no, password, username)
@@ -40,28 +61,46 @@ def create_credential(firstname, lastname, appname, emaill, phone_no, password, 
 
 
 def save_credentials(credential):
+    '''
+    Function to save a credential to the credentials list
+    '''
 
     credential.save_credentials()
 
 
 def del_credential(credential):
+    '''
+    Function to delete a credential
+    '''
 
     credential.delete_credential()
 
 
 def find_credential(number):
+    '''
+    Function to find a credential by number and return the credential
+    '''
     return Credentials.find_by_number(number)
 
 
 def check_existing_credentials(number):
+    '''
+    Function to check existing credentials by number and return a boolean
+    '''
     return Credentials.credential_exists(number)
 
 
 def check_existing_credential_username_and_app_name(username, app_name):
+    '''
+    Function to check existing credential by username and app name and return a boolean
+    '''
     return Credentials.find_by_username_and_app_name(username, app_name)
 
 
 def display_credentials():
+    '''
+    Function to display credentials
+    '''
     return Credentials.display_credentials()
 
 
@@ -204,7 +243,7 @@ def main():
 
         elif short_code == "cr":
             '''
-            First check if the user exists
+            First check if the user exists then run the if function
             '''
             print("Enter your phone number below to confirm if you exist. If you do, you will be redirected to a place to create your account.")
 
@@ -310,9 +349,12 @@ def main():
 
                         if answer == 'y':
                             print(
-                                "Enter the username and the app name of the credential you want to delete")
-
+                                "Enter the username of the credential you want to delete")
+                            
                             search_username = input()
+                            print(
+                                "Enter the app name of the credential you want to delete")
+
                             search_app_name = input()
 
                             if check_existing_credential_username_and_app_name(search_username, search_app_name):

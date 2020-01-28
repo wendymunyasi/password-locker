@@ -161,10 +161,16 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.username, "weezycray")
 
     def test_save_credential(self):
+        '''
+        To test if a credential is saved to the list of credentials
+        '''
         self.new_credential.save_credentials()
         self.assertEqual(len(Credentials.credentials_list), 1)
 
     def test_save_multiple_credentials(self):
+        '''
+        To test if multiple credentials are save
+        '''
         self.new_credential.save_credentials()
         test_credential = Credentials(
             "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycrazy")  # new credential
@@ -172,6 +178,9 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(len(Credentials.credentials_list), 2)
 
     def test_delete_credential(self):
+        '''
+        To test if a credential is deleted
+        '''
 
         self.new_credential.save_credentials()
         test_credential = Credentials(
@@ -182,6 +191,9 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(len(Credentials.credentials_list), 1)
 
     def test_find_credential_by_number(self):
+        '''
+        To test if we can find a credentials by number
+        '''
         self.new_credential.save_credentials()
         test_credential = Credentials(
             "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
@@ -193,6 +205,9 @@ class TestCredentials(unittest.TestCase):
                          test_credential.phone_number)
 
     def test_find_credential_by_app_name_and_username(self):
+        '''
+        To test if we can find a credential by name of the app and username
+        '''  
         self.new_credential.save_credentials()
         test_credential = Credentials(
             "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
@@ -205,6 +220,9 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(find_credential.app_name, test_credential.app_name)
 
     def test_credential_exists(self):
+        '''
+        To test if a credential exists
+        '''
         self.new_credential.save_credentials()
         test_credential = Credentials(
             "Wendy", "Munyasi", "Twitter", "wendymunyasi@gmail.com", "0707240068", "nBD48gd6dD", "weezycray")  # new credential
@@ -215,6 +233,9 @@ class TestCredentials(unittest.TestCase):
         self.assertTrue(credential_exists)
 
     def test_display_all_credentials(self):
+        '''
+        To test if we can display all credentials
+        '''
         self.assertEqual(Credentials.display_all_credentials(),
                          Credentials.credentials_list)
 

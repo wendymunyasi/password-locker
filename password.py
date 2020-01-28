@@ -97,6 +97,9 @@ class Credentials:
         return current_user
 
     def __init__(self, first_name, last_name, app_name, email, phone_number, password, username):
+        '''
+        Method that helps us define the properties of our objects
+        '''
 
         self.first_name = first_name
         self.last_name = last_name
@@ -108,18 +111,27 @@ class Credentials:
 
     @classmethod
     def find_by_number(cls, number):
+        '''
+        Method that takes in a number and retuns a credential or credentials that match that phone number
+        '''
         for credential in cls.credentials_list:
             if credential.phone_number == number:
                 return credential
 
     @classmethod
     def find_by_username_and_app_name(cls, appname, username):
+        '''
+        Method that takes in the app name and username and returns a credential that matches the input
+        '''
         for credential in cls.credentials_list:
             if (credential.app_name == appname and credential.username == username):
                 return credential
 
     @classmethod
     def credential_exists(cls, number):
+        '''
+        Method that takes in a number and returns a credential that matches that number
+        '''
         for credential in cls.credentials_list:
             if credential.phone_number == number:
                 return True
@@ -127,14 +139,26 @@ class Credentials:
 
     @classmethod
     def display_credentials(cls):
+        '''
+        Method that returns the credentials list
+        '''
         return cls.credentials_list
 
     @classmethod
     def display_all_credentials(cls):
+        '''
+        Method that returns all credentials in the list
+        '''
         return cls.credentials_list
 
     def save_credentials(self):
+        '''
+        Method that saves a credential and adds it to the credentials list
+        '''
         Credentials.credentials_list.append(self)
 
     def delete_credential(self):
+        '''
+        Method that deletes a credential from the credentials list
+        '''
         Credentials.credentials_list.remove(self)
