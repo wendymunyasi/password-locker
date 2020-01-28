@@ -38,7 +38,7 @@ This site lacks github pages
 [![codebeat badge](https://codebeat.co/badges/570ebdad-5058-4edf-842c-2283d6a47ab0)](https://codebeat.co/projects/github-com-wendymunyasi-password-locker-dev)
 
 
-##The following include the list of technologies used:**
+##The following include the list of technologies used:
 
 **Python3.6**
 
